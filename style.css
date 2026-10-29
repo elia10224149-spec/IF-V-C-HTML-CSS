@@ -1,179 +1,279 @@
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 
 :root {
-  --bg-gradient: linear-gradient(135deg,rgb(165, 14, 105) 0%, rgb(245, 121, 226) 16%, rgb(228, 231, 232) 60%, rgb(197, 43, 143) 100%);
-  --section-bg: #d94cd2;
-  --text-main: #f9f6f6;
-  --text-muted: #440b33;
-  --primary-color: #cc2190;
-  --primary-hover: #9e6d8c;
-  --code-bg: #1e1e1e;
-  --code-text: #d4d4d4;
-  --highlight-gradient: linear-gradient(135deg, #f1ecf6 0%, #e53fa5 100%);
-  --footer-gradient: linear-gradient(135deg, #1e1e21 0%, #b0aab5 100%);
+  /* Palet Warna Ungu Terang, Lilac, Putih & Emas */
+  --bg-gradient: linear-gradient(135deg, #A569BD 0%, #E8DAEF 45%, #BB8FCE 70%, #8E44AD 100%);
+  --purple-bright: #9B59B6;
+  --purple-soft: #D7BDE2;
+  --purple-deep: #4A235A;
+  --purple-pastel: #F5EEF8;
   
+  --gold-accent: #D4AF37;
+  --gold-gradient: linear-gradient(135deg, #F9E79F 0%, #D4AF37 50%, #B7950B 100%);
+  
+  --card-glass: rgba(255, 255, 255, 0.93);
+  --text-dark: #2C3E50;
+  
+  --border-radius-xl: 24px;
   --border-radius-lg: 16px;
-  --border-radius-md: 8px;
-  --box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-  --font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --shadow-aesthetic: 0 15px 35px rgba(142, 68, 173, 0.2);
+  
+  --font-title: 'Cinzel', serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
 }
 
 body {
-  font-family: var(--font-family);
-  background: var(--bg-gradient);
-  background-attachment: fixed;
-  color: var(--text-main);
-  line-height: 1.6;
-  padding: 50px 20px;
+  font-family: var(--font-body) !important;
+  background: var(--bg-gradient) !important;
+  background-attachment: fixed !important;
+  color: var(--text-dark);
+  line-height: 1.8;
+  padding: 40px 12px;
+  position: relative;
+  overflow-x: hidden;
 }
 
-.main-container {
-  max-width: 850px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 30px; 
-}
-
-.section {
-  background: var(--section-bg);
-  border-radius: var(--border-radius-lg);
-  box-shadow: var(--box-shadow);
-  padding: 50px 52px;
-  transition: transform 0.2s ease;
-  margin-bottom: 24px;
-  outline : 4px solid transparent;
-  
-  
-}
-
-.section-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 16px;
-  padding-bottom: 8px;
-  border-bottom: 2px solid #f0f0f0;
-}
-
-.section-title {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #1a202c;
-}
-
-.code-block {
-  background-color: var(--code-bg);
-  color: var(--code-text);
-  padding: 16px 20px;
-  border-radius: var(--border-radius-md);
-  font-family: "Fira Code", Consolas, Monaco, monospace;
-  font-size: 0.9rem;
-  overflow-x: auto;
-  margin: 16px 0;
-}
-
-.highlight-box {
-  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-  padding: 16px;
-  border-radius: var(--border-radius-md);
-  margin: 12px 0;
-}
-
-.custom-table {
+/* ================= BACKGROUND KUPU-KUPU (Beda Ukuran) ================= */
+.butterfly-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  border-collapse: collapse;
-  margin-top: 12px;
-  border-radius: var(--border-radius-md);
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
   overflow: hidden;
 }
 
-.custom-table th {
-  background-color: var(--primary-color);
-  color: #ffffff;
-  text-align: left;
-  padding: 12px 16px;
+.butterfly {
+  position: absolute;
+  opacity: 0.5;
+  filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.7));
+  animation: floatButterfly 14s infinite ease-in-out;
 }
 
-.custom-table td {
-  padding: 12px 16px;
-  border-bottom: 1px solid #e2e8f0;
+/* Variasi Ukuran Kupu-Kupu Besar & Kecil */
+.bf-small-1 { top: 12%; left: 5%; font-size: 1.2rem; animation-duration: 11s; }
+.bf-large-1 { top: 25%; right: 8%; font-size: 3.2rem; animation-duration: 18s; animation-delay: 1s; }
+.bf-small-2 { top: 50%; left: 10%; font-size: 1.5rem; animation-duration: 13s; animation-delay: 3s; }
+.bf-large-2 { top: 70%; right: 12%; font-size: 3.8rem; animation-duration: 22s; animation-delay: 2s; }
+.bf-small-3 { top: 85%; left: 20%; font-size: 1.1rem; animation-duration: 10s; animation-delay: 4s; }
+
+@keyframes floatButterfly {
+  0% { transform: translateY(0px) rotate(0deg) scale(1); }
+  50% { transform: translateY(-35px) rotate(15deg) scale(1.15); }
+  100% { transform: translateY(0px) rotate(0deg) scale(1); }
 }
 
-.custom-table tr:nth-child(even) {
-  background-color: #f7fafc;
+.main-container {
+  position: relative;
+  z-index: 1;
 }
 
-.form-group {
-  margin-bottom: 16px;
+/* ================= HEADER ================= */
+.header-lux {
+  background: rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 2px solid rgba(212, 175, 55, 0.5) !important;
+  border-radius: var(--border-radius-xl) !important;
+  padding: 45px 24px !important;
+  box-shadow: var(--shadow-aesthetic);
 }
 
-.form-group label {
-  display: block;
-  margin-bottom: 6px;
-  font-weight: 600;
+.header-title {
+  font-family: var(--font-title) !important;
+  color: var(--purple-deep) !important;
+  font-weight: 800 !important;
+  letter-spacing: 1px;
 }
 
-.form-control {
-  width: 100%;
-  padding: 10px 14px;
-  border: 1px solid #cbd5e0;
-  border-radius: var(--border-radius-md);
-  font-size: 0.95rem;
-  outline: none;
+.header-sub {
+  color: var(--purple-deep) !important;
+  font-weight: 500;
 }
 
-.form-control:focus {
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(43, 108, 176, 0.2);
+/* ================= KARTU ESTETIK ================= */
+.card-lux {
+  background: var(--card-glass) !important;
+  backdrop-filter: blur(10px);
+  border: 1.5px solid rgba(212, 175, 55, 0.3) !important;
+  border-radius: var(--border-radius-xl) !important;
+  box-shadow: var(--shadow-aesthetic) !important;
+  transition: all 0.35s ease;
 }
 
-.btn-submit {
-  background-color: var(--primary-color);
-  color: white;
-  padding: 10px 24px;
-  border: none;
-  border-radius: var(--border-radius-md);
-  cursor: pointer;
-  font-weight: 600;
+.card-lux:hover {
+  transform: translateY(-4px);
+  border-color: rgba(212, 175, 55, 0.8) !important;
+  box-shadow: 0 20px 40px rgba(142, 68, 173, 0.3) !important;
 }
 
-.btn-submit:hover {
-  background-color: var(--primary-hover);
+/* Judul Section */
+.title-lux {
+  font-family: var(--font-title) !important;
+  color: var(--purple-deep) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 2px dashed var(--purple-soft);
+  padding-bottom: 12px;
+  margin-bottom: 20px;
 }
 
-.header-section {
-  text-align: center;
-  padding: 50px 52px;
-}
-
-.footer-section {
-  background: var(--footer-gradient);
-  color: white;
-  text-align: center;
-  padding: 24px;
+/* ================= ESSENTIAL TAGS (KOTAK-KOTAK / GRID) ================= */
+.tag-box {
+  background: #FFFFFF;
+  border: 1.5px solid var(--purple-soft);
   border-radius: var(--border-radius-lg);
-  box-shadow: var(--box-shadow);
+  padding: 18px;
+  height: 100%;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(155, 89, 182, 0.08);
 }
 
-.footer-section h2 {
+.tag-box:hover {
+  border-color: var(--gold-accent);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(212, 175, 55, 0.25);
+}
+
+.tag-name {
+  display: inline-block;
+  background: var(--purple-pastel);
+  color: var(--purple-deep);
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--purple-soft);
   margin-bottom: 8px;
 }
 
-.footer-section a {
-  color: #e2e8f0;
-  text-decoration: underline;
+/* ================= LIVE EXAMPLES (ESTETIK) ================= */
+.live-example-card {
+  background: linear-gradient(145deg, #FFFFFF 0%, #FDFBF7 100%);
+  border: 1.5px solid rgba(212, 175, 55, 0.4);
+  border-radius: var(--border-radius-xl);
+  padding: 24px;
+  box-shadow: 0 10px 25px rgba(74, 35, 90, 0.08);
 }
 
-@media (max-width: 600px) {
-  body {
-    padding: 16px 10px;
-  }
-  .section {
-    padding: 50px 52px;
-  }
+.live-heading-1 {
+  font-family: var(--font-title);
+  color: var(--purple-deep);
+  font-weight: 800;
+  border-bottom: 2px solid var(--gold-accent);
+  padding-bottom: 6px;
+  display: inline-block;
+}
+
+.live-heading-2 {
+  font-family: var(--font-title);
+  color: var(--purple-bright);
+  font-weight: 700;
+}
+
+.live-heading-3 {
+  font-family: var(--font-title);
+  color: #8E44AD;
+  font-weight: 600;
+}
+
+.preview-box {
+  background: var(--purple-pastel);
+  border-left: 4px solid var(--purple-bright);
+  padding: 14px 18px;
+  border-radius: 0 12px 12px 0;
+}
+
+/* Blok Kode */
+pre, .code-block {
+  background: #2C1A3A !important;
+  border: 1px solid rgba(212, 175, 55, 0.4) !important;
+  border-radius: var(--border-radius-lg) !important;
+  padding: 20px !important;
+  color: #F3E5F5 !important;
+  box-shadow: inset 0 2px 10px rgba(0,0,0,0.3);
+}
+
+code {
+  color: #F9E79F !important;
+  font-weight: 600;
+}
+
+/* Tabel */
+.table-lux {
+  border-radius: var(--border-radius-lg) !important;
+  overflow: hidden;
+  border: 1px solid var(--purple-soft);
+}
+
+.table-lux thead {
+  background: linear-gradient(135deg, var(--purple-bright) 0%, var(--purple-deep) 100%) !important;
+  color: #FFFFFF !important;
+}
+
+.table-lux th {
+  font-family: var(--font-title);
+  padding: 16px !important;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+}
+
+.table-lux td {
+  padding: 14px 16px !important;
+  vertical-align: middle;
+}
+
+/* Form */
+.form-control, .form-select {
+  border-radius: var(--border-radius-lg) !important;
+  border: 1.5px solid var(--purple-soft) !important;
+  padding: 12px 16px !important;
+  transition: all 0.25s ease;
+  background-color: #FAFAFA !important;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: var(--purple-bright) !important;
+  background-color: #FFFFFF !important;
+  box-shadow: 0 0 0 4px rgba(155, 89, 182, 0.2) !important;
+}
+
+/* Tombol */
+.btn-lux {
+  background: var(--gold-gradient) !important;
+  color: var(--purple-deep) !important;
+  font-family: var(--font-title) !important;
+  font-weight: 700 !important;
+  border: none !important;
+  border-radius: 50px !important;
+  padding: 12px 36px !important;
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+  transition: all 0.3s ease;
+}
+
+.btn-lux:hover {
+  transform: scale(1.04);
+  box-shadow: 0 10px 25px rgba(212, 175, 55, 0.6);
+  color: #000 !important;
+}
+
+.badge-gold {
+  background: var(--gold-gradient) !important;
+  color: var(--purple-deep) !important;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 20px;
+}
+
+.footer-lux {
+  background: rgba(74, 35, 90, 0.9) !important;
+  backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(212, 175, 55, 0.4) !important;
+  border-radius: var(--border-radius-xl) !important;
+  padding: 36px 20px !important;
+  color: #FFFFFF !important;
 }
